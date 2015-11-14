@@ -31,6 +31,11 @@ module.exports = {
       config: srcPath + '/config/' + process.env.REACT_WEBPACK_ENV
     }
   },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
   module: {
     preLoaders: [
       {
@@ -63,7 +68,8 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
-      }
+      },
+      { test: /\.json$/, loader: 'json-loader' }
     ]
   }
 };
