@@ -1,6 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './Main';
 
-// Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('app'));
+import { render } from 'react-dom'
+import { Router, Route, Link } from 'react-router'
+
+import App from './Main';
+import Minou from './Minou';
+
+render((
+  <Router>
+    <Route path="/" component={App}>
+      <Route path="about" component={Minou}/>
+    </Route>
+  </Router>
+), document.getElementById('app'))
