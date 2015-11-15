@@ -12,7 +12,7 @@ class JoinEventForm extends React.Component {
   }
 
   handleSubmit(e) {
-    location = `/#/events/${e.target.eventSlug.value}/capture`;
+    location = `/#/events/${e.target.eventSlug.value}`;
     e.preventDefault();
     return false;
   }
