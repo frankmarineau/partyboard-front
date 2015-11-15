@@ -1,30 +1,33 @@
 import React from 'react';
-import request from 'request'
+import $ from 'jquery'
 
 class PhotoUpload extends React.Component {
 
   render() {
     return (
       <form>
-        <input type="file" accept="image/*;capture=camera" name="picture" onChange={this.pictureChanged.bind(this)}/>
+        <input id="allo" type="file" accept="image/*;capture=camera" name="picture" onChange={this.pictureChanged.bind(this)}/>
       </form>
     );
   }
 
   pictureChanged(e) {
-    let pictureInput = e.target.files[0];
-    let reader = new FileReader();
+    let pictureFile = e.target.files[0];
 
-    reader.onloadend = this.pictureReady.bind(this);
+    var data = new FormData();
+    $.each($('#allo')[0].files, function(i, file) {
+      data.append('file-'+i, file);
+    });
 
-    reader.readAsBinaryString(pictureInput);
-  }
-
-  pictureReady(e) {
-    request.post({
-      url: `http://jsonplaceholder.typicode.com/users`,
-      body: e.target.result
-    }, this.props.onUpload);
+    $.ajax({
+      url: `http://partyboard-api.willisite.com/events/${this.props.eventSlug}/pictures`,
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: 'POST',
+      success: this.props.onUpload
+    });
   }
 }
 

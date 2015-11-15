@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'request'
 
-import EventDetails from './EventDetails'
+import EventListElement from './EventListElement'
 
 class EventList extends React.Component {
   constructor() {
@@ -17,33 +17,22 @@ class EventList extends React.Component {
       <div>
         <a href="/#/events/new">Create event</a>
         {this.state.events.map((event, i) => {
-          return <EventDetails title={event.title} pictures={event.pictures} key={i}/>;
+          return <EventListElement event={event} key={i} onDelete={this.deleteEvent}/>;
         })}
       </div>
     );
   }
 
+  deleteEvent() {
+
+  }
+
   componentDidMount() {
     request.get({ url: 'http://partyboard-api.willisite.com/events', json: true }, this.dataIsReady.bind(this));
-    // setTimeout(this.dataIsReady.bind(this), 1500);
   }
 
   dataIsReady(err, res, body) {
-    body = [{
-      title: "allo oui",
-      pictures: [
-        "http://lorempixel.com/300/200",
-        "http://lorempixel.com/300/201"
-      ]
-    }, {
-      title: "wow",
-      pictures: [
-        "http://lorempixel.com/300/201",
-        "http://lorempixel.com/300/202"
-      ]
-    }];
-
-    this.setState({ events: body });
+    this.setState({ events: body.events });
   }
 }
 

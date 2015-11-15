@@ -3,19 +3,17 @@ require('styles/Slideshow.scss');
 import React from 'react';
 import request from 'request'
 
-import EventDetails from './EventDetails'
-
 class Slideshow extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pictures: []
+      pictures: [],
+      intervalHandle: null
     };
   }
 
   render() {
-    console.log("render");
     return (
       <div className="slideshow">
         {this.state.pictures.map((picture, i) => {
@@ -36,18 +34,27 @@ class Slideshow extends React.Component {
     let es = new EventSource(`${baseEventUrl}/stream`);
 
     es.addEventListener('picture', (picture) => {
-      console.log(picture);
+      let pictureUrl = JSON.parse(picture.data).url;
+
+      let newPictures = this.state.pictures;
+      newPictures.forEach(function(pic) {
+        pic.isVisible = false;
+      });
+
+      newPictures.unshift({ isVisible: true, url: pictureUrl });
+
+      clearInterval(this.state.intervalHandle);
 
       this.setState({
-        pictures: this.state.pictures.push((pictureUrl) => { return { isVisible: false, url: pictureUrl }; })
+        pictures: newPictures
       });
+
+      this.enableSlideshow();
     });
   }
 
   initialDataIsReady(err, res, body) {
-    body = ["http://placekitten.com/205/300", "http://placekitten.com/201/300", "http://placekitten.com/200/301"];
-
-    let pictures = body.map((pictureUrl) => { return { isVisible: false, url: pictureUrl }; });
+    let pictures = body.pictures.map((pictureUrl) => { return { isVisible: false, url: pictureUrl }; });
 
     if (pictures.length > 0) {
       pictures[0].isVisible = true;
@@ -57,7 +64,15 @@ class Slideshow extends React.Component {
       pictures: pictures
     });
 
-    setInterval(this.showNextPicture.bind(this), 5000);
+    this.enableSlideshow();
+  }
+
+  enableSlideshow() {
+    let handle = setInterval(this.showNextPicture.bind(this), 5000);
+
+    this.setState({
+      intervalHandle: handle
+    });
   }
 
   showNextPicture() {
