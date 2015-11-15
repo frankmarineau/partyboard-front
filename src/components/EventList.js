@@ -1,15 +1,22 @@
 import React from 'react';
 import request from 'request'
-import Cookies from 'Cookies'
 
-import GalleryPicture from './GalleryPicture'
+import Event from './Event'
 
 class EventList extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      events: []
+    };
+  }
+
   render() {
     return (
       <div>
         {this.state.events.map((event, i) => {
-          return <Event event={event} key={i}/>;
+          return <Event title={event.title} pictures={event.pictures} key={i}/>;
         })}
       </div>
     );
@@ -24,17 +31,18 @@ class EventList extends React.Component {
     body = [{
       title: "allo oui",
       pictures: [
-        "http://loremipsum.com/300/200",
-        "http://loremipsum.com/300/201"
+        "http://lorempixel.com/300/200",
+        "http://lorempixel.com/300/201"
       ]
     }, {
       title: "wow",
       pictures: [
-        "http://loremipsum.com/300/201",
-        "http://loremipsum.com/300/202"
+        "http://lorempixel.com/300/201",
+        "http://lorempixel.com/300/202"
       ]
     }];
-    this.setState({ pictures: body });
+
+    this.setState({ events: body });
   }
 }
 

@@ -4,11 +4,11 @@ import { render } from 'react-dom'
 import { Router, Route, Link } from 'react-router'
 
 import Home from './Home';
-import Event from './Event';
+import EventList from './EventList';
 
 render((
   <Router>
     <Route path="/" component={Home}/>
-    <Route path="/events/:eventSlug" component={Event}/>
+    <Route path="/events/:eventSlug" component={EventList}/>
   </Router>
 ), document.getElementById('app'))

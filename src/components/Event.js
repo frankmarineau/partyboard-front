@@ -1,21 +1,17 @@
 import React from 'react';
-import request from 'request'
 
 class Event extends React.Component {
   render() {
     return (
       <div>
-        event
+        <h1>{this.props.title}</h1>
+        {this.props.pictures.map((picture, i) => {
+          return (
+            <img src={picture} key={i}></img>
+          )})
+        }
       </div>
-    );
-  }
-
-  pictureUploaded(err, res, body) {
-    this.setState({ isModalShown: true });
-
-    setTimeout(() => {
-      this.setState({ isModalShown: false });
-    }, 2500);
+    )
   }
 }
 

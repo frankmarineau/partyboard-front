@@ -23,10 +23,10 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    // request.get({ url: `http://d7867bdd.ngrok.io/events/${this.props.eventSlug}`, json: true }, this.dataIsReady.bind(this))
+    // request.get({ url: `http://partyboard-api.willisite.com/events/${this.props.eventSlug}`, json: true }, this.dataIsReady.bind(this))
     setTimeout(this.dataIsReady.bind(this), 1500);
 
-    var es = new EventSource(`http://d7867bdd.ngrok.io/events/${this.props.eventSlug}`);
+    // var es = new EventSource(`http://partyboard.api.willisite.com/events/${this.props.eventSlug}`);
   }
 
   dataIsReady(err, res, body) {
