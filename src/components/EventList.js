@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'request'
 
-import Event from './Event'
+import EventDetails from './EventDetails'
 
 class EventList extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class EventList extends React.Component {
     return (
       <div>
         {this.state.events.map((event, i) => {
-          return <Event title={event.title} pictures={event.pictures} key={i}/>;
+          return <EventDetails title={event.title} pictures={event.pictures} key={i}/>;
         })}
       </div>
     );

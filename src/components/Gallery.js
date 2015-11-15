@@ -23,14 +23,14 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    request.get({ url: `http://partyboard-api.willisite.com/events/${this.props.routeParams.eventSlug}`, json: true }, this.dataIsReady.bind(this))
+    request.get({ url: `http://partyboard-api.willisite.com/events/${this.props.eventSlug}`, json: true }, this.dataIsReady.bind(this))
     // setTimeout(this.dataIsReady.bind(this), 1500);
 
     // var es = new EventSource(`http://partyboard.api.willisite.com/events/${this.props.eventSlug}`);
   }
 
   dataIsReady(err, res, body) {
-    // body = ["http://lorempixel.com/300/300", "http://lorempixel.com/301/300", "http://lorempixel.com/300/301", "http://lorempixel.com/303/301"];
+    body = {pictures: ["http://lorempixel.com/300/300", "http://lorempixel.com/301/300", "http://lorempixel.com/300/301", "http://lorempixel.com/303/301"]};
     this.setState({ pictures: body.pictures });
   }
 }
