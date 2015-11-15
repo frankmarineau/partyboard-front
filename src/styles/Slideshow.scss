@@ -1,0 +1,52 @@
+html, body {
+  padding: 0; margin: 0;
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+
+.slideshow {
+  height: 100%;
+}
+
+.slideshow__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.slideshow__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 1;
+  background-size: cover;
+  background-position: center center;
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+}
+
+.slideshow__image {
+  z-index: 2;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+.hidden {
+  visibility: hidden;
+}

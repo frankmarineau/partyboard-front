@@ -15,6 +15,7 @@ class EventList extends React.Component {
   render() {
     return (
       <div>
+        <a href="/#/events/new">Create event</a>
         {this.state.events.map((event, i) => {
           return <EventDetails title={event.title} pictures={event.pictures} key={i}/>;
         })}

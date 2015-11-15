@@ -4,7 +4,7 @@ import PhotoUpload from './PhotoUpload'
 import SuccessPrompt from './SuccessPrompt'
 import Gallery from './Gallery'
 
-class Event extends React.Component {
+class Capture extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,4 +32,4 @@ class Event extends React.Component {
   }
 }
 
-export default Event;
+export default Capture;
