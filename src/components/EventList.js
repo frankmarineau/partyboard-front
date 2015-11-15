@@ -5,7 +5,6 @@ import Cookies from 'Cookies'
 import GalleryPicture from './GalleryPicture'
 
 class EventList extends React.Component {
-
   render() {
     return (
       <div>
