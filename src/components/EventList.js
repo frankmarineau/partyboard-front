@@ -23,8 +23,8 @@ class EventList extends React.Component {
   }
 
   componentDidMount() {
-    // request.get({ url: 'http://d7867bdd.ngrok.io/events/', json: true }, this.dataIsReady.bind(this));
-    setTimeout(this.dataIsReady.bind(this), 1500);
+    request.get({ url: 'http://partyboard-api.willisite.com/events', json: true }, this.dataIsReady.bind(this));
+    // setTimeout(this.dataIsReady.bind(this), 1500);
   }
 
   dataIsReady(err, res, body) {
