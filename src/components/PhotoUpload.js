@@ -5,9 +5,10 @@ class PhotoUpload extends React.Component {
 
   render() {
     return (
-      <form>
-        <input id="allo" type="file" accept="image/*;capture=camera" name="picture" onChange={this.pictureChanged.bind(this)}/>
-      </form>
+      <div className="fab" onClick={this.clickInput.bind(this)}>
+        <span className="fab__icon icon icon--photo"></span>
+        <input id="file-input" type="file" accept="image/*;capture=camera" name="picture" onChange={this.pictureChanged.bind(this)}/>
+      </div>
     );
   }
 
@@ -15,12 +16,12 @@ class PhotoUpload extends React.Component {
     let pictureFile = e.target.files[0];
 
     var data = new FormData();
-    $.each($('#allo')[0].files, function(i, file) {
+    $.each($('#file-input')[0].files, function(i, file) {
       data.append('file-'+i, file);
     });
 
     $.ajax({
-      url: `http://partyboard-api.willisite.com/events/${this.props.eventSlug}/pictures`,
+      url: `http://partyboard-api.willisite.com/events/${this.props.eventSlug}/pictures/`,
       data: data,
       cache: false,
       contentType: false,
@@ -28,6 +29,10 @@ class PhotoUpload extends React.Component {
       type: 'POST',
       success: this.props.onUpload
     });
+  }
+
+  clickInput() {
+    $('#file-input').click();
   }
 }
 

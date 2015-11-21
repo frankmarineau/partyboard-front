@@ -16,9 +16,11 @@ class Capture extends React.Component {
   render() {
     return (
       <main>
-        <PhotoUpload eventSlug={this.props.params.eventSlug} onUpload={this.pictureUploaded.bind(this)}/>
-        <SuccessPrompt message="Good job mon homme, YOLO!" open={this.state.isModalShown}/>
+        <header className="header">
+          <h2 className="header__title">Events</h2>
+        </header>
         <Gallery eventSlug={this.props.params.eventSlug}/>
+        <PhotoUpload eventSlug={this.props.params.eventSlug}/>
       </main>
     );
   }

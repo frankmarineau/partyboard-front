@@ -1,0 +1,32 @@
+.fab {
+  position: fixed;
+  bottom: $gutter;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  background-color: $white;
+  z-index: 998;
+  box-shadow: 0px 1px 2px 0px rgba($black, 0.25);
+  cursor: pointer;
+  @include size(72px);
+  @include transition(box-shadow $time $curve);
+
+  @include mq(medium) {
+    left: auto;
+    right: $gutter*2;
+    bottom: $gutter*2;
+
+    &:hover {
+      box-shadow: 0px 2px 4px 0px rgba($black, 0.35);
+    }
+  }
+}
+
+.fab__icon {
+  display: block;
+  top: 50%;
+  margin: -1px auto 0;
+  position: relative;
+  @include transform(translateY(-50%));
+}

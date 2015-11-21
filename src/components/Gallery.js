@@ -14,10 +14,12 @@ class Gallery extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.pictures.map((pictureUrl, i) => {
-          return <GalleryPicture url={pictureUrl} key={i}/>;
-        })}
+      <div className="main">
+        <div className="gallery">
+          {this.state.pictures.map((pictureId, i) => {
+            return <GalleryPicture pictureId={pictureId} eventSlug={this.props.eventSlug} key={i}/>;
+          })}
+        </div>
       </div>
     );
   }

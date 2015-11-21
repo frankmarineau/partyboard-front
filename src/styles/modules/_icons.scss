@@ -1,0 +1,49 @@
+// Icons
+
+@mixin icon($filename, $width: 24px, $height: 24px) {
+  background-image: url('/images/icons/#{$filename}.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: $width;
+  height: $height;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: $spacing-medium;
+  height: $spacing-medium;
+
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}
+
+.icon--large {
+  width: $spacing-large;
+  height: $spacing-large;
+}
+
+
+// Misc icons
+
+.icon--photo {
+  @include icon(photo, 36px, 28px);
+}
+
+.icon--logo-purple {
+  @include icon(logo-purple, 61px, 41px);
+}
+
+.icon--logo-white {
+  @include icon(logo-white, 110px, 74px);
+}
+
+.icon--right-arrow {
+  @include icon(right-arrow, 16px, 16px);
+}
+
+.icon--facebook {
+  @include icon(facebook, 20px, 20px);
+}

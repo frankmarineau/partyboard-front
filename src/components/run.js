@@ -1,3 +1,5 @@
+require('styles/main.scss');
+
 import React from 'react';
 
 import { render } from 'react-dom'
@@ -8,10 +10,12 @@ import Capture from './Capture';
 import EventList from './EventList';
 import EventCreation from './EventCreation';
 import Slideshow from './Slideshow';
+import Login from './Login';
 
 render((
   <Router>
     <Route path="/" component={Home}/>
+    <Route path="/login" component={Login}/>
     <Route path="/events" component={EventList}/>
     <Route path="/events/new" component={EventCreation}/>
     <Route path="/events/:eventSlug" component={Capture}/>

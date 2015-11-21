@@ -20,7 +20,7 @@ class EventCreation extends React.Component {
     let form = e.target.form;
 
     request.post({
-      url: 'http://partyboard-api.willisite.com/events',
+      url: 'http://partyboard-api.willisite.com/events/',
       body: {
         title: form.title.value,
         slug: form.slug.value

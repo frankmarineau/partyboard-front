@@ -4,7 +4,7 @@ import request from 'request'
 class FacebookButton extends React.Component {
   render() {
     return (
-      <a href="/#/events" className="btn btn--facebook">Facebook</a>
+      <a className="btn btn--primary" href="/#/events/new"><span className="btn__icon icon--facebook"></span>Connect with Facebook</a>
     );
   }
 }

@@ -1,5 +1,3 @@
-require('styles/Slideshow.scss');
-
 import React from 'react';
 import request from 'request'
 
@@ -14,6 +12,7 @@ class Slideshow extends React.Component {
   }
 
   render() {
+    console.log(this.state.pictures);
     return (
       <div className="slideshow">
         {this.state.pictures.map((picture, i) => {
@@ -33,28 +32,30 @@ class Slideshow extends React.Component {
     request.get({ url: baseEventUrl, json: true }, this.initialDataIsReady.bind(this));
     let es = new EventSource(`${baseEventUrl}/stream`);
 
+    let self = this;
+
     es.addEventListener('picture', (picture) => {
       let pictureUrl = JSON.parse(picture.data).url;
 
-      let newPictures = this.state.pictures;
+      let newPictures = self.state.pictures;
       newPictures.forEach(function(pic) {
         pic.isVisible = false;
       });
 
-      newPictures.unshift({ isVisible: true, url: pictureUrl });
+      newPictures.push({ isVisible: true, url: pictureUrl });
 
-      clearInterval(this.state.intervalHandle);
+      clearInterval(self.state.intervalHandle);
 
-      this.setState({
+      self.setState({
         pictures: newPictures
       });
 
-      this.enableSlideshow();
+      self.enableSlideshow();
     });
   }
 
   initialDataIsReady(err, res, body) {
-    let pictures = body.pictures.map((pictureUrl) => { return { isVisible: false, url: pictureUrl }; });
+    let pictures = body.pictures.map((pictureId) => { return { isVisible: false, url: `http://partyboard-api.willisite.com/events/${body.slug}/pictures/${pictureId}` }; });
 
     if (pictures.length > 0) {
       pictures[0].isVisible = true;
@@ -68,7 +69,7 @@ class Slideshow extends React.Component {
   }
 
   enableSlideshow() {
-    let handle = setInterval(this.showNextPicture.bind(this), 5000);
+    let handle = setInterval(this.showNextPicture.bind(this), 3000);
 
     this.setState({
       intervalHandle: handle
@@ -80,21 +81,22 @@ class Slideshow extends React.Component {
 
     let lastWasVisible = false;
 
+    let lastVisible = -1;
     for (let i = 0; i < pictures.length ; i++) {
-      if (lastWasVisible) {
-        pictures[i].isVisible = true;
-        break;
-      }
-
       if (pictures[i].isVisible) {
-        lastWasVisible = true;
-        pictures[i].isVisible = false;
-
-        if (i === pictures.length - 1) {
-          pictures[0].isVisible = true;
-        }
+        lastVisible = i;
       }
+
+      pictures[i].isVisible = false;
     }
+
+    let rand = Math.floor(Math.random() * pictures.length)
+
+    while (rand === lastVisible) {
+      rand = Math.floor(Math.random() * pictures.length)
+    }
+
+    pictures[rand].isVisible = true;
 
     this.setState({
       pictures: pictures

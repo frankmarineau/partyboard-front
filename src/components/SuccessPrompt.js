@@ -1,6 +1,3 @@
-require('styles/SuccessPrompt.scss');
-
-
 import React from 'react';
 
 class SuccessPrompt extends React.Component {

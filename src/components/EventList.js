@@ -14,25 +14,24 @@ class EventList extends React.Component {
 
   render() {
     return (
-      <div>
-        <a href="/#/events/new">Create event</a>
+      <main>
+        <header className="header">
+          <h2 className="header__title">Events</h2>
+        </header>
+
         {this.state.events.map((event, i) => {
           return <EventListElement event={event} key={i} onDelete={this.deleteEvent}/>;
         })}
-      </div>
+      </main>
     );
   }
 
-  deleteEvent() {
-
-  }
-
   componentDidMount() {
-    request.get({ url: 'http://partyboard-api.willisite.com/events', json: true }, this.dataIsReady.bind(this));
+    request.get({ url: 'http://partyboard-api.willisite.com/events/', json: true }, this.dataIsReady.bind(this));
   }
 
   dataIsReady(err, res, body) {
-    this.setState({ events: body.events });
+    this.setState({ events: body });
   }
 }
 

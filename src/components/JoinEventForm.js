@@ -4,10 +4,14 @@ import request from 'request'
 class JoinEventForm extends React.Component {
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text" placeholder="Enter event code..." name="eventSlug" />
-        <button tpye="submit">GO</button>
-      </form>
+      <div className="field">
+        <form className="field__input-btn-wrapper" onSubmit={this.handleSubmit}>
+          <div className="field__input-wrapper">
+            <input type="text" className="field__input" placeholder="Enter code" name="eventSlug"/>
+          </div>
+          <button className="field__input-btn btn btn--primary" type="submit"><span className="icon icon--right-arrow"></span></button>
+        </form>
+      </div>
     );
   }
 

@@ -1,0 +1,40 @@
+// Primary colors
+
+$black: #000;
+$white: #fff;
+
+$purple: #7446E1;
+$border: #D4D4D4;
+
+$background: #EBECED;
+
+
+// Animations
+
+$time: 0.1s;
+$time-longer: 0.3s;
+
+$curve: ease-in-out;
+$curve-bounce: cubic-bezier(0.155, 0.960, 0.560, 1.315);
+
+
+// Measurements
+
+$gutter: 20px;
+
+$header-height: 50px;
+
+$border-radius: 4px;
+
+$spacing-small: 8px;
+$spacing-medium: $spacing-small * 2;
+$spacing-large: $spacing-small * 3;
+$spacing-x-large: $spacing-small * 4;
+
+
+// Media queries
+
+$small: 480px;
+$medium: 816px;
+$large: 1096px;
+$x-large: 1320px;

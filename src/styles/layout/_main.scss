@@ -1,0 +1,12 @@
+.main {
+  margin: $header-height auto 0;
+  max-width: 840px;
+
+  @include mq(medium) {
+    padding: $gutter;
+  }
+
+  @include mq(large) {
+    margin-top: $header-height*1.5;
+  }
+}
